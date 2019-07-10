@@ -1,0 +1,25 @@
+{
+  "name": "ipfs-stay-connected",
+  "version": "1.0.0",
+  "description": "Ensures your local IPFS node stays connected to a list of other IPFS nodes.",
+  "main": "stay-connected.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/christroutner/ipfs-stay-connected.git"
+  },
+  "keywords": [
+    "ipfs",
+    "node.js",
+    "javascript",
+    "p2p"
+  ],
+  "author": "Chris Troutner <chris.troutner@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/christroutner/ipfs-stay-connected/issues"
+  },
+  "homepage": "https://github.com/christroutner/ipfs-stay-connected#readme"
+}
