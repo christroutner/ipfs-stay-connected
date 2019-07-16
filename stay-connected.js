@@ -3,22 +3,31 @@
   Ensure your IPFS daemon is running before executing this app.
 */
 
-'use strict'
+"use strict";
 
-const shell = require('shelljs')
+const shell = require("shelljs");
 
-const peers = require('./peers')
+const getPeers = require("./peers");
 
-function connectToPeers() {
-  for(let i=0; i < peers.length; i++) {
-    shell.exec(`ipfs swarm connect ${peers[i]}`)
+async function connectToPeers() {
+  try {
+    const peers = await getPeers();
+    console.log(`peers: ${JSON.stringify(peers, null, 2)}`);
+
+    if (peers.length === 0) throw new Error(`peers array is empty!`);
+
+    for (let i = 0; i < peers.length; i++) {
+      shell.exec(`ipfs swarm connect ${peers[i]}`);
+    }
+  } catch (err) {
+    console.error(`Error in connectToPeers(): `, err);
   }
 }
 
 // Execute the connection instructions immediately
-connectToPeers()
+connectToPeers();
 
 // Re-execute the connection instrucions periodically.
 setInterval(function() {
-  connectToPeers()
-}, 20000)
+  connectToPeers();
+}, 20000);
