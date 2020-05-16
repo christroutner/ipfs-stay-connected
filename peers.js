@@ -21,13 +21,15 @@ async function getPeerArray() {
         name: "256GB PI",
         localAddr:
           "/ip4/192.168.0.18/tcp/4101/ipfs/QmQhH6D7yiCrdLWjLGXx2H1m3UWBk3To9eCTvbmMNFYHSN",
-        remoteAddr: `/ip4/${decaturIp}/tcp/4101/ipfs/QmQhH6D7yiCrdLWjLGXx2H1m3UWBk3To9eCTvbmMNFYHSN`
+        // remoteAddr: `/ip4/${decaturIp}/tcp/4101/ipfs/QmQhH6D7yiCrdLWjLGXx2H1m3UWBk3To9eCTvbmMNFYHSN`
+        remoteAddr: `/dns/decatur.hopto.org/tcp/4101/ipfs/QmQhH6D7yiCrdLWjLGXx2H1m3UWBk3To9eCTvbmMNFYHSN`
       },
       {
         name: "4TB PI",
         localAddr:
           "/ip4/192.168.0.47/tcp/7700/ipfs/Qma7UL7kBPPukRXfvES89Ce772USyfUaYxaP3msKTdNcyJ",
-        remoteAddr: `/ip4/${decaturIp}/tcp/7700/ipfs/Qma7UL7kBPPukRXfvES89Ce772USyfUaYxaP3msKTdNcyJ`
+        // remoteAddr: `/ip4/${decaturIp}/tcp/7700/ipfs/Qma7UL7kBPPukRXfvES89Ce772USyfUaYxaP3msKTdNcyJ`
+        remoteAddr: `/dns/decatur.hopto.org/tcp/7700/ipfs/Qma7UL7kBPPukRXfvES89Ce772USyfUaYxaP3msKTdNcyJ`
       },
       {
         name: "IPFS Bootstrap",
