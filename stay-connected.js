@@ -9,19 +9,47 @@ const shell = require("shelljs");
 
 const getPeers = require("./peers");
 
-const RECONNECT_INTERVAL = 20000
+const RECONNECT_INTERVAL = 20000;
 
 async function connectToPeers() {
   try {
     const peers = await getPeers();
-    console.log(`peers: ${JSON.stringify(peers, null, 2)}`);
+    // console.log(`peers: ${JSON.stringify(peers, null, 2)}`);
 
     if (peers.length === 0) throw new Error(`peers array is empty!`);
 
-    for (let i = 0; i < peers.length; i++) {
-      const thisPeer = peers[i]
+    console.log(` `)
 
-      shell.exec(`ipfs swarm connect ${peers[i].remoteAddr}`);
+    for (let i = 0; i < peers.length; i++) {
+      const thisPeer = peers[i];
+
+      // first try to connect to the remote address of the peer.
+      const remoteTry = await promExec(
+        `ipfs swarm connect ${thisPeer.remoteAddr}`
+      );
+      // console.log(`remoteTry: ${JSON.stringify(remoteTry, null, 2)}`);
+
+      // If connected successfully, report and exit.
+      if(!remoteTry.code) {
+        console.log(`Successfully connected to '${thisPeer.name}' at ${thisPeer.remoteAddr}`)
+        continue
+      }
+
+      // second try to connect to the local address of the peer.
+      const localTry = await promExec(
+        `ipfs swarm connect ${thisPeer.localAddr}`
+      );
+      // console.log(`localTry: ${JSON.stringify(localTry, null, 2)}`);
+
+      // If connected successfully, report and exit.
+      if(!localTry.code) {
+        console.log(`Successfully connected to '${thisPeer.name}' at ${thisPeer.localAddr}`)
+        continue
+      }
+
+      // third, report that the error about peer not being able to be connected.
+      console.error(`Error trying to connect to peer '${thisPeer.name}': ${localTry.stderr}`)
+
     }
   } catch (err) {
     console.error(`Error in connectToPeers(): `, err);
@@ -35,3 +63,29 @@ connectToPeers();
 setInterval(function() {
   connectToPeers();
 }, RECONNECT_INTERVAL);
+
+// Promise-based wrapper around async shelljs exec command.
+// Returns an object with the exit code, stdout, and stderr messages, as per
+// the shelljs docs:
+// https://www.npmjs.com/package/shelljs#execcommand--options--callback
+// Silents the normal command line output.
+function promExec(cmd) {
+  return new Promise((resolve, reject) => {
+    try {
+      shell.exec(cmd, { silent: true }, function(code, stdout, stderr) {
+        // console.log('Exit code:', code);
+        // console.log('Program output:', stdout);
+        // console.log('Program stderr:', stderr);
+        // console.log(' ')
+
+        return resolve({
+          code,
+          stdout,
+          stderr
+        });
+      });
+    } catch (err) {
+      return reject(err);
+    }
+  });
+}
