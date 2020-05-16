@@ -9,6 +9,8 @@ const shell = require("shelljs");
 
 const getPeers = require("./peers");
 
+const RECONNECT_INTERVAL = 20000
+
 async function connectToPeers() {
   try {
     const peers = await getPeers();
@@ -17,7 +19,9 @@ async function connectToPeers() {
     if (peers.length === 0) throw new Error(`peers array is empty!`);
 
     for (let i = 0; i < peers.length; i++) {
-      shell.exec(`ipfs swarm connect ${peers[i]}`);
+      const thisPeer = peers[i]
+
+      shell.exec(`ipfs swarm connect ${peers[i].remoteAddr}`);
     }
   } catch (err) {
     console.error(`Error in connectToPeers(): `, err);
@@ -30,4 +34,4 @@ connectToPeers();
 // Re-execute the connection instrucions periodically.
 setInterval(function() {
   connectToPeers();
-}, 20000);
+}, RECONNECT_INTERVAL);
