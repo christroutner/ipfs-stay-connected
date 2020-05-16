@@ -7,28 +7,25 @@
 
 const dns = require("dns");
 
-// Flag to indicate if I'm running within a home network or not.
-// const LOCAL = true;
-// const LOCAL = false;
-
 async function getPeerArray() {
   try {
     const decaturIp = await getDecaturIP();
     console.log(`IP address for decatur.hopto.org: ${decaturIp}`);
+    // Note: I no longer use the above function in the peer list below, since I
+    // can specify the dns setting in the IPFS addr. But the code is left here
+    // in case I need to fall back to it in the future.
 
     const peerArray = [
       {
         name: "256GB PI",
         localAddr:
           "/ip4/192.168.0.18/tcp/4101/ipfs/QmQhH6D7yiCrdLWjLGXx2H1m3UWBk3To9eCTvbmMNFYHSN",
-        // remoteAddr: `/ip4/${decaturIp}/tcp/4101/ipfs/QmQhH6D7yiCrdLWjLGXx2H1m3UWBk3To9eCTvbmMNFYHSN`
         remoteAddr: `/dns/decatur.hopto.org/tcp/4101/ipfs/QmQhH6D7yiCrdLWjLGXx2H1m3UWBk3To9eCTvbmMNFYHSN`
       },
       {
         name: "4TB PI",
         localAddr:
           "/ip4/192.168.0.47/tcp/7700/ipfs/Qma7UL7kBPPukRXfvES89Ce772USyfUaYxaP3msKTdNcyJ",
-        // remoteAddr: `/ip4/${decaturIp}/tcp/7700/ipfs/Qma7UL7kBPPukRXfvES89Ce772USyfUaYxaP3msKTdNcyJ`
         remoteAddr: `/dns/decatur.hopto.org/tcp/7700/ipfs/Qma7UL7kBPPukRXfvES89Ce772USyfUaYxaP3msKTdNcyJ`
       },
       {
