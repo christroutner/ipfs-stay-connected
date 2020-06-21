@@ -9,8 +9,8 @@ const dns = require("dns");
 
 async function getPeerArray() {
   try {
-    const decaturIp = await getDecaturIP();
-    console.log(`IP address for decatur.hopto.org: ${decaturIp}`);
+    // const decaturIp = await getDecaturIP();
+    // console.log(`IP address for decatur.hopto.org: ${decaturIp}`);
     // Note: I no longer use the above function in the peer list below, since I
     // can specify the dns setting in the IPFS addr. But the code is left here
     // in case I need to fall back to it in the future.
@@ -33,6 +33,17 @@ async function getPeerArray() {
         localAddr:
           "/ip4/116.203.193.74/tcp/4001/ipfs/QmNZktxkfScScnHCFSGKELH3YRqdxHQ3Le9rAoRLhZ6vgL",
         remoteAddr: `/ip4/116.203.193.74/tcp/4001/ipfs/QmNZktxkfScScnHCFSGKELH3YRqdxHQ3Le9rAoRLhZ6vgL`
+      },
+      {
+        name: "uncensorablepublishing.com",
+        localAddr:
+          "/ip4/78.47.240.56/tcp/4231/ipfs/QmSXxjZYto1NAC7zi8B7ZhySrCRyiXLwcAAMWEQeP5HB9g",
+        remoteAddr: "/ip4/78.47.240.56/tcp/4231/ipfs/QmSXxjZYto1NAC7zi8B7ZhySrCRyiXLwcAAMWEQeP5HB9g"
+      },
+      {
+        name: "wallet.fullstack.cash",
+        localAddr: "/ip4/159.69.29.155/tcp/4231/p2p/QmVDNWWboLhJByei1ikMtZvkFGykL2AMCVgFCMzoWxHjqp",
+        remoteAddr: "/ip4/159.69.29.155/tcp/4231/p2p/QmVDNWWboLhJByei1ikMtZvkFGykL2AMCVgFCMzoWxHjqp"
       }
     ];
 
