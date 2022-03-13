@@ -33,7 +33,8 @@ async function connectToPeers () {
 
       // If connected successfully, report and exit.
       if (!remoteTry.code) {
-        console.log(`${now.toLocaleString()}: Successfully connected to '${thisPeer.name}' at ${thisPeer.remoteAddr}`)
+        console.log(`${now.toLocaleString()}: Successfully connected to '${thisPeer.name}' at ${thisPeer.remoteAddr}
+`)
         continue
       }
 
