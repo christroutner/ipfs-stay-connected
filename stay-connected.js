@@ -48,7 +48,7 @@ async function connectToPeers () {
       // }
 
       // third, report that the error about peer not being able to be connected.
-      console.log(`Error trying to connect to peer '${thisPeer.name}': ${localTry.stderr}`)
+      console.log(`Error trying to connect to peer '${thisPeer.name}': ${remoteTry.stderr}`)
     }
   } catch (err) {
     console.error(`Error in connectToPeers(): `, err)
