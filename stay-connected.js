@@ -29,9 +29,11 @@ async function connectToPeers () {
       )
       // console.log(`remoteTry: ${JSON.stringify(remoteTry, null, 2)}`)
 
+      const now = new Date()
+
       // If connected successfully, report and exit.
       if (!remoteTry.code) {
-        console.log(`Successfully connected to '${thisPeer.name}' at ${thisPeer.remoteAddr}`)
+        console.log(`${now.toLocaleString()}: Successfully connected to '${thisPeer.name}' at ${thisPeer.remoteAddr}`)
         continue
       }
 
@@ -48,7 +50,7 @@ async function connectToPeers () {
       // }
 
       // third, report that the error about peer not being able to be connected.
-      console.log(`Error trying to connect to peer '${thisPeer.name}': ${remoteTry.stderr}`)
+      console.log(`${now.toLocaleString()}: Error trying to connect to peer '${thisPeer.name}': ${remoteTry.stderr}`)
     }
   } catch (err) {
     console.error(`Error in connectToPeers(): `, err)
