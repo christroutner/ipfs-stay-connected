@@ -5,7 +5,7 @@ to a list of other IPFS nodes.
 IPFS has a poor habit of dropping connections to peers as part of its normal
 operation. This is extremely frustrating when trying to send and receive files
 with specific peers that you manually connected to. This app will renew the
-connection every 20 seconds by issuing a `ipfs swarm connect <peer>` command
+connection every 2 minutes by issuing a `ipfs swarm connect <peer>` command
 for each peer listed in the `peers.js` file.
 
 This app is intended for personal use, but other people are free to fork and
