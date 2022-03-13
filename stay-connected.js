@@ -42,10 +42,10 @@ async function connectToPeers () {
       // console.log(`localTry: ${JSON.stringify(localTry, null, 2)}`)
 
       // If connected successfully, report and exit.
-      if (!localTry.code) {
-        console.log(`Successfully connected to '${thisPeer.name}' at ${thisPeer.localAddr}`)
-        continue
-      }
+      // if (!localTry.code) {
+      //   console.log(`Successfully connected to '${thisPeer.name}' at ${thisPeer.localAddr}`)
+      //   continue
+      // }
 
       // third, report that the error about peer not being able to be connected.
       console.log(`Error trying to connect to peer '${thisPeer.name}': ${localTry.stderr}`)
