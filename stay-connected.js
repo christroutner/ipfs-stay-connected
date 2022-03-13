@@ -9,7 +9,7 @@ const shell = require('shelljs')
 
 const getPeers = require('./peers')
 
-const RECONNECT_INTERVAL = 20000
+const RECONNECT_INTERVAL = 120000
 
 async function connectToPeers () {
   try {
